@@ -1,5 +1,20 @@
+<div id='tweet-buttons'>
+    <img src='../../../assets/visibility.svg' class='button' id='button-visibility'>
+    <img src='../../../assets/interface.svg' class='button' id='button-check'>
+</div>
+
 <div class='tweet-card'>
-    <p>{{parentData.name}}</p>
-    <p>{{parentData.message}}</p>
-    <p>{{parentData.sentiment}}</p>
+    
+    <div id='tweet-information'>
+        
+        <div id='tweet-profile'>
+            <div id='profile-image'>IMAGE</div>
+            <div id='profile-names'>
+                <p id='main-name'>{{parentData.name}}</p>
+                <p id='tag-name'>@{{parentData.tag}}</p>
+            </div>
+        </div>
+        <p>{{parentData.message}}</p>
+        <p>{{parentData.sentiment}}</p>
+    </div>
 </div>
