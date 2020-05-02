@@ -1,16 +1,31 @@
 import { Injectable } from '@angular/core';
-import { GenericService } from './generic.service';
-import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class TweetsService {
-  private api = 'https://movie-collection-web-api.herokuapp.com/movies';
+  constructor(){}
+  getTweets(){
+    return [
+      {"name":"Alex", "message":"hai ca vom reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi", "sentiment":"positive"},
+      {"name":"Alex", "message":"hai ca vom reusi", "sentiment":"positive"},
+      {"name":"Alex", "message":"hai ca vom reusi  reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi reusi", "sentiment":"positive"},
+      {"name":"Alex", "message":"hai ca vom reusi", "sentiment":"positive"},
+      {"name":"Alex", "message":"hai ca vom reusi", "sentiment":"positive"},
+      {"name":"Alex", "message":"hai ca vom reusi", "sentiment":"positive"},
+      {"name":"Ramona", "message":"ce vrea e facultatea offf", "sentiment":"negative"},
+      {"name":"Ramona", "message":"ce vrea e facultatea offf", "sentiment":"negative"},
+      {"name":"Ramona", "message":"ce vrea e facultatea offf", "sentiment":"negative"},
+      {"name":"Ramona", "message":"ce vrea e facultatea offf", "sentiment":"negative"},
+      {"name":"Ramona", "message":"ce vrea e facultatea offf", "sentiment":"negative"},
+      {"name":"Ramona", "message":"ce vrea e facultatea offf", "sentiment":"negative"},
+      {"name":"Ramona", "message":"ce vrea e facultatea offf", "sentiment":"negative"},
+      {"name":"Ramona", "message":"ce vrea e facultatea offf", "sentiment":"negative"},
+      {"name":"Ramona", "message":"ce vrea e facultatea offf", "sentiment":"negative"},
+      {"name":"Ramona", "message":"ce vrea e facultatea offf", "sentiment":"negative"},
+      {"name":"Ramona", "message":"ce vrea e facultatea offf", "sentiment":"negative"},
+      {"name":"Ramona", "message":"ce vrea e facultatea offf", "sentiment":"negative"},
 
-  constructor(private baseService: GenericService) {}
 
-  public getAll(): Observable<any[]> {
-    return this.baseService.get<any[]>(this.api, '');
+      {"name":"Mihai", "message":"ce?", "sentiment":"neutral"}
+    ];
   }
 }

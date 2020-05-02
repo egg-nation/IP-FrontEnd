@@ -1,0 +1,28 @@
+#page-header{
+    height: 395px;
+    border: 2px solid black;
+}
+
+#main-content{
+    height: 1695px;
+    border: 2px solid black;
+
+}
+
+#page-footer{
+    height: 82px;
+    border: 2px solid black;
+
+}
+
+.grid-item{
+    width: 25.56%;
+    align-items: center;
+    border-radius: 2px;
+}
+
+.grid{
+    padding-top: 100px;
+    padding-left: 8%;
+    padding-right: 8%;
+}

@@ -1,7 +1,16 @@
-<p>main-page works!</p>
+<header id="page-header">
+  <p>Tweets App</p>
+  <p>Verification of validity for tweets</p>
+</header>
+<div id="main-content">
+  <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "gutter": 30 }'>
 
-<div *ngIf="test">
-  <div *ngFor="let t of test">
-    {{t.title}}
+    <div class="grid-item" *ngFor="let t of tweetsFromDB">
+        <app-tweet-card [parentData]="t"></app-tweet-card>
+    </div>
+
   </div>
 </div>
+<footer id="page-footer">
+  
+</footer>

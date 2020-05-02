@@ -7,13 +7,11 @@ import { TweetsService } from 'src/app/services/tweets.service';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
-  public test: any[];
+  public tweetsFromDB = [];
 
   constructor(private tweetsService: TweetsService) {}
 
-  ngOnInit(): void {
-    this.tweetsService.getAll().subscribe((response) => {
-      this.test = response;
-    });
+  ngOnInit(){
+    this.tweetsFromDB = this.tweetsService.getTweets();
   }
 }
