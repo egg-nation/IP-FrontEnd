@@ -3,8 +3,6 @@
 function linkify(text) {
     // (https?:\/\/)(\s)?(www\.)?(\s?)(\w+\.)*([\w\-\s]+\/)*([\w-]+)\/?
     var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
-    console.log("ana");
-
     return text.replace(urlRegex, function(url) {
         return '<a href="' + url + '">' + url + '</a>';
     });
@@ -12,7 +10,6 @@ function linkify(text) {
 
 
 function blueLinks(){
-    console.log("ana");
     let texts = document.getElementsByClassName("tweet-text");
     let i;
     for (i = 0; i < texts.length; i++) {
@@ -21,4 +18,3 @@ function blueLinks(){
 }
 
 blueLinks();
-console.log("ana");
