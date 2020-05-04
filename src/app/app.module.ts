@@ -13,9 +13,12 @@ import { AppComponent } from './app.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { TweetCardComponent } from './components/tweet-card/tweet-card.component';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [AppComponent, MainPageComponent, TweetCardComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, NgxPaginationModule, NgbModule],
   providers: [GenericService, TweetsService, ClefHerokuService],
   bootstrap: [AppComponent],
 })
