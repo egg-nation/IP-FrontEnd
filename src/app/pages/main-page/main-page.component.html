@@ -7,10 +7,18 @@
 <div id="main-content">
   <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "gutter": 0 }'>
 
-    <div class="grid-item" *ngFor="let t of tweetsFromDB">
-        <app-tweet-card [parentData]="t"></app-tweet-card>
+    <div class="grid-item" *ngFor="let t of tweetsFromDB | paginate: 
+        { id: '_id',
+          itemsPerPage: pageSize,
+          currentPage: page,
+          totalItems: totalTweets}">
+      <app-tweet-card [parentData]="t"></app-tweet-card>
     </div>
 
+  </div>
+
+  <div>
+    <pagination-controls id="_id" maxSize="5" directionLinks="true" (pageChange)="pageChange($event)"></pagination-controls>
   </div>
   
 </div>
