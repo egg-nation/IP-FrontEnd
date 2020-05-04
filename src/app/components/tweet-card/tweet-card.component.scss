@@ -1,7 +1,10 @@
 .tweet-card{
     background-color: #ffffff;
     border-radius: 20px;
-    margin: 15px 0;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    margin-top: 15px;;
     padding: 40px;
     position: relative;
 }
@@ -42,6 +45,14 @@
     background-image: URL('../../../assets/interface.svg');
     background-color: #62b660;
 
+}
+a{
+    color: #00acee;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
 }
 
 
