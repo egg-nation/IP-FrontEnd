@@ -56,3 +56,8 @@
 #second-part{
     color: rgb(255, 255, 255);
 }
+
+#pagination {
+    display: flex;
+    flex-direction: row-reverse;
+}
