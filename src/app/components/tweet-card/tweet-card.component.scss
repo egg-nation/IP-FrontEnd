@@ -50,6 +50,10 @@
     background-color: #62b660;
 
 }
+.button3{
+    background-image: URL('../../../assets/close.svg');
+    background-color: #00acee;
+}
 a{
     color: #00acee;
     text-decoration: none;
@@ -113,6 +117,7 @@ a:hover{
     font-size: 16px;
     line-height: 1.5;
     font-family: 'Open Sans', sans-serif;
+    margin-top: 32px;
     margin-bottom: 32px;
 
 }

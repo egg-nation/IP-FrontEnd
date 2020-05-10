@@ -11,8 +11,8 @@
         { id: '_id',
           itemsPerPage: pageSize,
           currentPage: page,
-          totalItems: totalTweets}">
-      <app-tweet-card [parentData]="t"></app-tweet-card>
+          totalItems: totalTweets}; index as i">
+      <app-tweet-card [parentData]="t" [index]="i"></app-tweet-card>
     </div>
 
   </div>
