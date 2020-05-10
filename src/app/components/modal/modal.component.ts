@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ElementRef } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'modal',
@@ -9,14 +9,14 @@ import { Component, OnInit, Input, ElementRef } from '@angular/core';
       </div>
     </div>
     <div class="mmodal-background"></div>
-    `,
-  styleUrls: ['./modal.component.css']
+  `,
+  styleUrls: ['./modal.component.css'],
 })
-export class ModalComponent implements OnInit {
-  constructor(private el: ElementRef) { }
-  ngOnInit() { }
-  close() {
-    this.el.nativeElement.classList.remove('sshow')
-    this.el.nativeElement.classList.add('hhidden')
+export class ModalComponent {
+  constructor(private el: ElementRef) {}
+
+  public close() {
+    this.el.nativeElement.classList.remove('sshow');
+    this.el.nativeElement.classList.add('hhidden');
   }
 }

@@ -1,3 +1,3 @@
 export class Tweet {
-    id: String;
+  id: String;
 }
