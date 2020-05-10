@@ -1,11 +1,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 <script src="./tweet-card.component.js"></script>
-
 <div class='tweet-card'>
     <div class='tweet-buttons'>
-        <a class='tweet-button button1'  href="">
-
+        <a class='tweet-button button1' (click)="showDialog()">
             <!-- <img src='../../../assets/visibility.svg' > -->
         </a>
         <a class='tweet-button button2'  href="">
@@ -14,7 +12,7 @@
     </div>
     <div class="tweet-header">
         <div class="tweet-pic">
-            <img src={{parentData.pic}} alt=""> 
+            <img src={{parentData.pic}} alt="">
             <!-- <img src="../../../assets/ramo.png" alt=""> -->
         </div>
         <div class="tweet-name">
