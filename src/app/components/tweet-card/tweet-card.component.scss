@@ -5,7 +5,6 @@
   margin-right: 15px;
   margin-bottom: 15px;
   margin-top: 15px;
-  ;
   padding: 40px;
   position: relative;
 }
@@ -53,19 +52,24 @@
   background-color: #62b660;
 
 }
+.button3{
+    background-image: URL('../../../assets/signs.svg');
+    background-color: #cf3f4c;
+}
 
 .button3 {
   background-image: URL('../../../assets/close.svg');
   background-color: #00acee;
 }
-
-a {
-  color: #00acee;
-  text-decoration: none;
+a{
+    color: #00acee;
+    text-decoration: none;
+    word-break: break-all;
 }
 
-a:hover {
-  text-decoration: underline;
+a:hover{
+    color: #00acee;
+    text-decoration: underline;
 }
 
 
@@ -121,12 +125,12 @@ a:hover {
 
 //------------------------------------text------------------
 
-.tweet-text {
-  font-size: 16px;
-  line-height: 1.5;
-  font-family: 'Open Sans', sans-serif;
-  margin-top: 32px;
-  margin-bottom: 32px;
+.tweet-text{
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: 'Open Sans', sans-serif;
+    margin-bottom: 32px;
+    margin-top: 18px;
 
 }
 
@@ -166,10 +170,10 @@ a:hover {
   margin-left: 10px;
 }
 
-.count {
-  // font-size:12px;
-}
+// .count {
+//   // font-size:12px;
+// }
 
-.date {
-  // font-size:12px;
-}
+// .date{
+//     // font-size:12px;
+// }
