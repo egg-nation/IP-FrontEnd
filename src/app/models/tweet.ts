@@ -8,8 +8,24 @@ export class Tweet {
   name: any;
   link: any;
   pic: any;
+  retweets: any;
+  TrustedSource: any;
+  date: any;
 
-  constructor(_id, full_text, features, svm_verdict, cnn_verdict, tag, name, link, pic) {
+  constructor(
+    _id,
+    full_text,
+    features,
+    svm_verdict,
+    cnn_verdict,
+    tag,
+    name,
+    link,
+    pic,
+    retweets,
+    TrustedSource,
+    date
+  ) {
     this._id = _id;
     this.full_text = full_text;
     this.features = features;
@@ -19,5 +35,8 @@ export class Tweet {
     this.name = name;
     this.link = link;
     this.pic = pic;
+    this.retweets = retweets;
+    this.TrustedSource = TrustedSource;
+    this.date = date;
   }
 }

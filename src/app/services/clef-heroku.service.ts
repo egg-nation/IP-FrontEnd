@@ -62,6 +62,9 @@ export class ClefHerokuService {
       let name = 'asd';
       let link = 'asd';
       let pic = '"http://tevi.xyz/img/ramo.webp"';
+      let retweets = 100000;
+      let trustedSource = true;
+      let date = Date.now();
       tweetsArr.push(
         new Tweet(
           _id,
@@ -72,7 +75,10 @@ export class ClefHerokuService {
           tag,
           name,
           link,
-          pic
+          pic,
+          retweets,
+          trustedSource,
+          date
         )
       );
     }
