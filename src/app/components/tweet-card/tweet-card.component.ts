@@ -33,7 +33,6 @@ export class TweetCardComponent implements OnInit, AfterViewInit {
   }
 
   public closeDialog() {
-    console.log(this.index);
     let modal_t = document.getElementById(this.index);
     modal_t.classList.remove('sshow');
     modal_t.classList.add('hhidden');

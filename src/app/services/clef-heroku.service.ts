@@ -13,6 +13,10 @@ import { environment } from 'src/environments/environment';
 })
 export class ClefHerokuService {
   private BASE_URI = 'https://ip2020.herokuapp.com';
+  // private BASE_URI = 'http://localhost:5000';
+
+  private newInserted;
+  private pages = {};
 
   tweets: BehaviorSubject<Tweet[]>;
   pusher: any;
@@ -20,7 +24,7 @@ export class ClefHerokuService {
   currentPage: any;
   init: boolean = false;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router) {
     this.tweets = new BehaviorSubject([]);
 
     this.pusher = new Pusher('8021a486e2f0eaac6b68', {
@@ -30,7 +34,11 @@ export class ClefHerokuService {
 
     this.router.events.subscribe(async (res) => {
       if (res instanceof NavigationEnd) {
-        this.currentPage = res.id;
+        let changedPage = res.url.split('/')[2];
+        if (changedPage == null || isNaN(parseInt(changedPage))) {
+          return;
+        }
+        this.currentPage = res.url.split('/')[2];
         if (!this.init) {
           await this._makeInitialFetch(this.currentPage);
           this._registerHandlers();
@@ -42,47 +50,81 @@ export class ClefHerokuService {
     });
   }
 
+  private createTweet(tweet): Tweet {
+    let _id = tweet['_id'];
+    let features = tweet['features'];
+    let svm_verdict = tweet['svm_verdict'];
+    let cnn_verdict = tweet['cnn_verdict'];
+    let trustedSource = true;
+
+    if (svm_verdict == 1) {
+      if (cnn_verdict < 0.5) {
+        trustedSource = false;
+      }
+    } else {
+      trustedSource = false;
+    }
+
+    let full_text, tag, name, link, pic, retweets, date;
+
+    if ('retweeted_status' in tweet) {
+      full_text = tweet['retweeted_status']['full_text'];
+      tag = tweet['retweeted_status']['user']['screen_name'];
+      name = tweet['retweeted_status']['user']['name'];
+      link = '';
+      pic = tweet['retweeted_status']['user']['profile_image_url_https'];
+      retweets = tweet['retweeted_status']['retweet_count'];
+      date = tweet['retweeted_status']['created_at'].replace('+0000', '');
+    } else {
+      full_text = tweet['full_text'];
+      tag = tweet['user']['screen_name'];
+      name = tweet['user']['name'];
+      link = '';
+      pic = tweet['user']['profile_image_url_https'];
+      retweets = tweet['retweet_count'];
+      date = tweet['created_at'].replace('+0000', '');
+    }
+
+    let createdTweet: Tweet = new Tweet(
+      _id,
+      full_text,
+      features,
+      svm_verdict,
+      cnn_verdict,
+      tag,
+      name,
+      link,
+      pic,
+      retweets,
+      trustedSource,
+      date
+    );
+    return createdTweet;
+  }
+
   async _makeInitialFetch(page) {
     await this.loadPage(page);
   }
 
   async loadPage(page) {
-    const response = await fetch(
-      this.BASE_URI + '/tweets?limit=' + 10 + '&skip=' + (page - 1) * 10
-    );
-    const arr: any[] = await response.json();
-    const tweetsArr: Tweet[] = [];
-    for (let tweet of arr) {
-      let _id = tweet['_id'];
-      let full_text = tweet['full_text'];
-      let features = tweet['features'];
-      let svm_verdict = tweet['svm_verdict'];
-      let cnn_verdict = tweet['cnn_verdict'];
-      let tag = 'asd';
-      let name = 'asd';
-      let link = 'asd';
-      let pic = '"http://tevi.xyz/img/ramo.webp"';
-      let retweets = 100000;
-      let trustedSource = true;
-      let date = Date.now();
-      tweetsArr.push(
-        new Tweet(
-          _id,
-          full_text,
-          features,
-          svm_verdict,
-          cnn_verdict,
-          tag,
-          name,
-          link,
-          pic,
-          retweets,
-          trustedSource,
-          date
-        )
-      );
+    if (!this.newInserted && page in this.pages) {
+      this.tweets.next(this.pages[page]);
+    } else {
+      if (this.newInserted) {
+        this.newInserted = false;
+        this.pages = {};
+      }
+      const route =
+        this.BASE_URI + '/tweets?limit=10' + '&skip=' + (page - 1) * 10;
+      const response = await fetch(route);
+      const arr: any[] = await response.json();
+      const tweetsArr: Tweet[] = [];
+      for (let tweet of arr) {
+        tweetsArr.push(this.createTweet(tweet));
+      }
+      this.pages[page] = tweetsArr;
+      this.tweets.next(tweetsArr);
     }
-    this.tweets.next(tweetsArr);
   }
 
   async _getTweetById(id) {
@@ -93,56 +135,28 @@ export class ClefHerokuService {
 
   _registerHandlers() {
     this.channel.bind('INSERTED', async (data) => {
-      if (this.currentPage == 1) {
+      this.newInserted = true;
+      if (this.currentPage == '1' || this.currentPage == 1) {
         let prevArr = this.tweets.value;
         const tweet = await this._getTweetById(data.id);
 
-        let _id = tweet['_id'];
-        let full_text = tweet['full_text'];
-        let features = tweet['features'];
-        let svm_verdict = tweet['svm_verdict'];
-        let cnn_verdict = tweet['cnn_verdict'];
-        let tag = 'asd';
-        let name = 'asd';
-        let link = 'asd';
-        let pic = '"http://tevi.xyz/img/ramo.webp"';
-        let retweets = 100000;
-        let trustedSource = true;
-        let date = Date.now();
-
-        let newTweet = new Tweet(
-          _id,
-          full_text,
-          features,
-          svm_verdict,
-          cnn_verdict,
-          tag,
-          name,
-          link,
-          pic,
-          retweets,
-          trustedSource,
-          date
-        );
-
+        let newTweet = this.createTweet(tweet);
         prevArr.unshift(newTweet);
+
         this.tweets.next(prevArr);
       } else {
         return;
       }
-      /*const prevArr = this.tweets.value;
-      const newTweet = await this._getTweetById(data.id);
-      prevArr.push(newTweet);
-      this.tweets.next(prevArr);*/
     });
+
     this.channel.bind('CHANGED', async (data) => {
-      /*const arr = this.tweets.value;
+      const arr = this.tweets.value;
       const index = arr.findIndex((el) => el._id == data.id);
       if (index >= 0) {
         const changedTweet = await this._getTweetById(data.id);
-        arr[index] = changedTweet;
+        arr[index] = this.createTweet(changedTweet);
       }
-      this.tweets.next(arr);*/
+      this.tweets.next(arr);
     });
   }
 

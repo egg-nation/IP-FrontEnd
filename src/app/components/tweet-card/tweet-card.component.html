@@ -9,12 +9,12 @@
     <a class='tweet-button button1' (click)="showDialog()">
     </a>
 
-    <div *ngIf="parentData.TrustedSource == 'true'; then thenBlock; else elseBlock"></div>
+    <div *ngIf="parentData.TrustedSource; then thenBlock; else elseBlock"></div>
     <ng-template #thenBlock>
-      <a class='tweet-button button2' href=""></a>
+      <a class='tweet-button button2'></a>
     </ng-template>
     <ng-template #elseBlock>
-      <a class='tweet-button button3' href=""></a>
+      <a class='tweet-button button3'></a>
     </ng-template>
   </div>
   <div class="tweet-header">

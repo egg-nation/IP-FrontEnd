@@ -10,7 +10,7 @@
     tweets. </h4>
 </header>
 
-<div id="main-content" *ngIf="tweets && tweets.length">
+<div id="main-content" *ngIf="tweets && tweets.length; else loader">
   <div class="grid">
     <!-- data-masonry='{ "itemSelector": ".grid-item", "gutter": 0 }'>-->
 
@@ -30,6 +30,10 @@
   </div>
 
 </div>
+<ng-template #loader>
+  <div class="loader-part">
+  </div>
+</ng-template>
 
 <footer id="page-footer">
   <p id="text-footer"><span id="first-part">Alexandru Ioan Cuza University: Faculty of Computer Science </span> <span

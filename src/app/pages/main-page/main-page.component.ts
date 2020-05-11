@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { ClefHerokuService } from 'src/app/services/clef-heroku.service';
 import { TweetsService } from 'src/app/services/tweets.service';
@@ -14,22 +14,23 @@ import { Tweet } from 'src/app/models/tweet';
 export class MainPageComponent implements OnInit {
   public tweets: Tweet[] = null;
   public totalTweets: number = null;
-  public page: number = 1;
-  public pageSize: number;
+  public page: number = null;
+  public pageSize: number = 10;
 
   constructor(
     private herokuService: ClefHerokuService,
     private router: Router,
-    private tweetsService: TweetsService
+    private tweetsService: TweetsService,
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.page = this.activatedRoute.snapshot.params.pageNum;
     this.tweetsService.getNumberOfTweets().subscribe(
       (res) => {
         this.totalTweets = res.count;
         this.herokuService.getTweets().subscribe((tweets: Tweet[]) => {
           this.tweets = tweets;
-          console.log(tweets);
         });
       },
       (err) => {

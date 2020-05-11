@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class TweetsService {
   private URL = 'https://ip2020.herokuapp.com';
+  // private URL = 'http://localhost:5000';
 
   constructor(private baseService: GenericService) {}
 

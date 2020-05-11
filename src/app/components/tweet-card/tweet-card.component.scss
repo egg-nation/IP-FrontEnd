@@ -30,6 +30,7 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .tweet-button-trusted {
   display: inline-block;
   position: relative;
@@ -60,7 +61,7 @@
   display: inline-block;
   position: relative;
   left: 110px;
-  top:-40px;
+  top: -40px;
   margin-right: 10px;
   height: 40px;
   width: 40px;
@@ -71,13 +72,13 @@
 }
 
 
-.tweet-button-text{
+.tweet-button-text {
   position: relative;
-  color:#ffffff;
-  top:8px;
-  left:22px;
+  color: #ffffff;
+  top: 8px;
+  left: 22px;
   font-family: 'Open Sans', sans-serif;
-  font-size:12px;
+  font-size: 12px;
 }
 
 
@@ -91,6 +92,10 @@
 .button1 {
   background-image: URL('../../../assets/visibility.svg');
   background-color: #00acee;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .button2 {
@@ -102,25 +107,38 @@
   background-image: URL('../../../assets/interface.svg');
   background-color: #62b660;
 
+  &:hover {
+    cursor: pointer;
+  }
 }
-.button3{
-    background-image: URL('../../../assets/signs.svg');
-    background-color: #cf3f4c;
+
+.button3 {
+  background-image: URL('../../../assets/signs.svg');
+  background-color: #cf3f4c;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .button4 {
   background-image: URL('../../../assets/close.svg');
   background-color: #00acee;
-}
-a{
-    color: #00acee;
-    text-decoration: none;
-    word-break: break-all;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-a:hover{
-    color: #00acee;
-    text-decoration: underline;
+a {
+  color: #00acee;
+  text-decoration: none;
+  word-break: break-all;
+}
+
+a:hover {
+  color: #00acee;
+  text-decoration: underline;
 }
 
 
@@ -176,12 +194,12 @@ a:hover{
 
 //------------------------------------text------------------
 
-.tweet-text{
-    font-size: 16px;
-    line-height: 1.5;
-    font-family: 'Open Sans', sans-serif;
-    margin-bottom: 32px;
-    margin-top: 18px;
+.tweet-text {
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: 'Open Sans', sans-serif;
+  margin-bottom: 32px;
+  margin-top: 18px;
 
 }
 
