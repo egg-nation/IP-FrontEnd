@@ -1,38 +1,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-<script src="./tweet-card.component.js"></script>
+
 <div class='tweet-card'>
-    <div class='tweet-buttons'>
-        <a class='tweet-button button1' (click)="showDialog()">
-            <!-- <img src='../../../assets/visibility.svg' > -->
-        </a>
-        <a class='tweet-button button2'  href="">
-            <!-- <img src='../../../assets/interface.svg' class='button' id='button-check'> -->
-        </a>
+  <div class='tweet-buttons'>
+    <a class='tweet-button button1' (click)="showDialog()">
+      <!-- <img src='../../../assets/visibility.svg' > -->
+    </a>
+    <a class='tweet-button button2' href="">
+      <!-- <img src='../../../assets/interface.svg' class='button' id='button-check'> -->
+    </a>
+  </div>
+  <div class="tweet-header">
+    <div class="tweet-pic">
+      <img src={{parentData.pic}} alt="">
+      <!-- <img src="../../../assets/ramo.png" alt=""> -->
     </div>
-    <div class="tweet-header">
-        <div class="tweet-pic">
-            <img src={{parentData.pic}} alt="">
-            <!-- <img src="../../../assets/ramo.png" alt=""> -->
-        </div>
-        <div class="tweet-name">
-            <p class='main-name'>{{parentData.name}}</p>
-            <p class='tag-name'>@{{parentData.tag}}</p>
-        </div>
+    <div class="tweet-name">
+      <p class='main-name'>{{parentData.name}}</p>
+      <p class='tag-name'>@{{parentData.tag}}</p>
     </div>
-    <p class="tweet-text">{{parentData.message}}
-        <a href="">{{parentData.link}}/</a>
-    </p>
-    <div class="tweet-footer">
-        <div class="retweets">
-            <span class="icon retweet-icon"></span>
-            <span class="count">
-                140000 retweets
-            </span>
-        </div>
-        <div class="tweet-date">
-            <span class="icon date-icon"></span>
-            <span class="date">12/12/2020</span>
-        </div>
-    </div>    
+  </div>
+  <p class="tweet-text">{{parentData.full_text}}
+    <a href="">{{parentData.link}}/</a>
+  </p>
+  <div class="tweet-footer">
+    <div class="retweets">
+      <span class="icon retweet-icon"></span>
+      <span class="count">
+        140000 retweets
+      </span>
+    </div>
+    <div class="tweet-date">
+      <span class="icon date-icon"></span>
+      <span class="date">12/12/2020</span>
+    </div>
+  </div>
 </div>

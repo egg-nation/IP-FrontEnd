@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { ClefHerokuService } from 'src/app/services/clef-heroku.service';
 import { TweetsService } from 'src/app/services/tweets.service';
+
+import { Tweet } from 'src/app/models/tweet';
 
 @Component({
   selector: 'app-main-page',
@@ -7,20 +12,34 @@ import { TweetsService } from 'src/app/services/tweets.service';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
-  public tweetsFromDB = [];
-  totalTweets: number;
-  page: number = 1;
-  pageSize: number = 9;
-  constructor(private tweetsService: TweetsService) {}
+  public tweets: Tweet[] = null;
+  public totalTweets: number = null;
+  public page: number = 1;
+  public pageSize: number;
 
-  ngOnInit(){
-    this.tweetsFromDB = this.tweetsService.getTweets();
-    this.totalTweets = this.tweetsFromDB.length;
+  constructor(
+    private herokuService: ClefHerokuService,
+    private router: Router,
+    private tweetsService: TweetsService
+  ) {}
+
+  ngOnInit() {
+    this.tweetsService.getNumberOfTweets().subscribe(
+      (res) => {
+        this.totalTweets = res.count;
+        this.herokuService.getTweets().subscribe((tweets: Tweet[]) => {
+          this.tweets = tweets;
+          console.log(tweets);
+        });
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
-  
-  pageChange(newPage: number) {
-    this.tweetsFromDB = this.tweetsService.getTweets().slice((newPage - 1) * this.pageSize, (newPage - 1) * this.pageSize + this.pageSize);
-    //this.router.navigate([''], { queryParams: { page: newPage } });
+
+  public pageChange(newPage: number) {
+    this.router.navigateByUrl('/home/' + newPage);
+    this.page = newPage;
   }
-  
 }

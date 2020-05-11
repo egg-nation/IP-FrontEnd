@@ -1,27 +1,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
 <header id="page-header">
   <h1 id="firstHeader">Tweets verification app. <br> Verification of validity for tweets</h1>
   <h4 id="thirdHeader">Since its launch in 2006, Twitter has taken small steps to fight false information, from
     uprooting bot accounts to banning political ads. In 2020, the microblogging service is making moves like never
-    before—not only to crack down on false information, but to correct it. Check out our application for evaluating such
+    before—not only to crack down on false information, but to correct it. Check out our application for evaluating
+    such
     tweets. </h4>
 </header>
-<div id="main-content">
+
+<div id="main-content" *ngIf="tweets && tweets.length">
   <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "gutter": 0 }'>
 
-    <div class="grid-item" *ngFor="let t of tweetsFromDB | paginate: 
-        { id: '_id',
-          itemsPerPage: pageSize,
-          currentPage: page,
-          totalItems: totalTweets}; index as i">
+    <div class="grid-item" *ngFor="let t of tweets | paginate: 
+          { id: '_id',
+            itemsPerPage: pageSize,
+            currentPage: page,
+            totalItems: totalTweets}; index as i">
       <app-tweet-card [parentData]="t" [index]="i"></app-tweet-card>
     </div>
 
   </div>
 
   <div class="pagination">
-    <pagination-controls id="_id" maxSize="5" directionLinks="true" (pageChange)="pageChange($event)"></pagination-controls>
+    <pagination-controls id="_id" maxSize="5" directionLinks="true" (pageChange)="pageChange($event)">
+    </pagination-controls>
   </div>
 
 </div>
