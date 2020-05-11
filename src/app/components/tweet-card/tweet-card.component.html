@@ -3,15 +3,23 @@
 <script src="./tweet-card.component.js"></script>
 <div class='tweet-card'>
     <div class='tweet-buttons'>
-        <a class='tweet-button-trusted button2' (click)="showDialog()">
+        <!-- <a class='tweet-button-trusted button2' (click)="showDialog()">
             <p class='tweet-button-text'>Trusted source</p>
-        </a>
-        <!-- <a class='tweet-button button2'  href="">
         </a> -->
+        <a class='tweet-button button1' (click)="showDialog()">
+        </a>
+    
+        <div *ngIf="parentData.TrustedSource == 'true'; then thenBlock; else elseBlock"></div>
+        <ng-template #thenBlock>
+            <a class='tweet-button button2'  href=""></a>
+        </ng-template>
+        <ng-template #elseBlock>
+            <a class='tweet-button button3'  href=""></a>
+        </ng-template>
     </div>
     <div class="tweet-header">
         <div class="tweet-pic">
-            <img src={{parentData.pic}} alt="">
+            <img src={{parentData.pic}} alt=""> 
             <!-- <img src="../../../assets/ramo.png" alt=""> -->
         </div>
         <div class="tweet-name">
@@ -37,11 +45,22 @@
     <modal id={{index}} class="hhidden">
         <div class='tweet-card'>
             <div class='tweet-buttons'>
-                <a class='tweet-button button3' (click)="closeDialog()">
-                    <!-- <img src='../../../assets/visibility.svg' > -->
-                </a>
-                <a class='tweet-button button2'  href="">
-                    <!-- <img src='../../../assets/interface.svg' class='button' id='button-check'> -->
+
+                <div *ngIf="parentData.TrustedSource == 'true'; then thenBlockTrusted; else elseBlockTrusted"></div>
+                <ng-template #thenBlockTrusted>
+                    <a class='tweet-button-trusted button2'>
+                        <p class='tweet-button-text'>Trusted source</p>
+                    </a> 
+                </ng-template>
+                <ng-template #elseBlockTrusted>
+                    <a class='tweet-button-not-trusted button3'>
+                        <p class='tweet-button-text'>Not trusted source</p>
+                    </a>
+                </ng-template>
+
+               
+
+                <a class='tweet-button-close button4' (click)="closeDialog()">
                 </a>
             </div>
             <div class="tweet-header">
@@ -61,12 +80,12 @@
                 <div class="retweets">
                     <span class="icon retweet-icon"></span>
                     <span class="count">
-                        140000 retweets
+                        {{parentData.retweets}} retweets
                     </span>
                 </div>
                 <div class="tweet-date">
                     <span class="icon date-icon"></span>
-                    <span class="date">12/12/2020</span>
+                    <span class="date">{{parentData.date}}</span>
                 </div>
             </div>
         </div>
