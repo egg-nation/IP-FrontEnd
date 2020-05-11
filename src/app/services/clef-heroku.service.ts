@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ClefHerokuService {
-  private BASE_URI = 'http://ip2020.herokuapp.com';
+  private BASE_URI = 'https://ip2020.herokuapp.com';
 
   tweets: BehaviorSubject<Tweet[]>;
   pusher: any;
