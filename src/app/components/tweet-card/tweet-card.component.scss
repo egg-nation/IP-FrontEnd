@@ -30,6 +30,29 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+.tweet-button-trusted {
+  display: inline-block;
+  position: relative;
+  right: 68px;
+  margin-right: 10px;
+  height: 36px;
+  width: 146px;
+  border-radius: 20px;
+  background-size: 16px 16px;
+  background-repeat: no-repeat;
+  background-position: 120px 10px;
+}
+
+.tweet-button-text{
+  position: relative;
+  color:#ffffff;
+  top:8px;
+  left:22px;
+  font-family: 'Open Sans', sans-serif;
+  font-size:12px;
+}
+
+
 
 .tweet-button img {
   position: absolute;
@@ -57,7 +80,7 @@
     background-color: #cf3f4c;
 }
 
-.button3 {
+.button4 {
   background-image: URL('../../../assets/close.svg');
   background-color: #00acee;
 }
