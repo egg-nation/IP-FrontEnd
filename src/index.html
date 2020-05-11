@@ -7,12 +7,13 @@
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  
+
   <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
   <script>
-    function resetMasonry(){
-      let myGrid = document.querySelector('#grid');
-      msnry = new Masonry(myGrid);
+    function resetMasonry() {
+      let myGrid = document.querySelector('.grid');
+      let msnry = new Masonry(myGrid);
+      console.log(msnry);
       msnry.masonry('reloadItems');
     }
   </script>
@@ -20,7 +21,6 @@
 
 <body>
   <app-root></app-root>
-  
 </body>
 
 </html>

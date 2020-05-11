@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class ClefHerokuService {
-  private BASE_URI = 'http://localhost:5000';
+  private BASE_URI = 'http://ip2020.herokuapp.com';
 
   tweets: BehaviorSubject<Tweet[]>;
   pusher: any;
@@ -93,6 +93,43 @@ export class ClefHerokuService {
 
   _registerHandlers() {
     this.channel.bind('INSERTED', async (data) => {
+      if (this.currentPage == 1) {
+        let prevArr = this.tweets.value;
+        const tweet = await this._getTweetById(data.id);
+
+        let _id = tweet['_id'];
+        let full_text = tweet['full_text'];
+        let features = tweet['features'];
+        let svm_verdict = tweet['svm_verdict'];
+        let cnn_verdict = tweet['cnn_verdict'];
+        let tag = 'asd';
+        let name = 'asd';
+        let link = 'asd';
+        let pic = '"http://tevi.xyz/img/ramo.webp"';
+        let retweets = 100000;
+        let trustedSource = true;
+        let date = Date.now();
+
+        let newTweet = new Tweet(
+          _id,
+          full_text,
+          features,
+          svm_verdict,
+          cnn_verdict,
+          tag,
+          name,
+          link,
+          pic,
+          retweets,
+          trustedSource,
+          date
+        );
+
+        prevArr.unshift(newTweet);
+        this.tweets.next(prevArr);
+      } else {
+        return;
+      }
       /*const prevArr = this.tweets.value;
       const newTweet = await this._getTweetById(data.id);
       prevArr.push(newTweet);

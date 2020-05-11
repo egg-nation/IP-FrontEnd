@@ -40,9 +40,12 @@
 }
 
 .grid{
-    display: grid;
-    grid-template-columns: auto;
-    grid-gap: 15px; 
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    // display: grid;
+    // grid-template-columns: auto;
+    // grid-gap: 15px; 
     padding-top: 80px;
     margin-left: 100px;
     margin-right: 100px;
