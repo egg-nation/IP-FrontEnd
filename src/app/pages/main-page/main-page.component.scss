@@ -1,5 +1,4 @@
 #page-header{
-    border: 0.1px solid black;
     background-image: url("../../../assets/headerBackgroundImage.jpg");
     color: white;
     font-weight: 800;
@@ -122,6 +121,22 @@
     }
     
 }
+
+@media only screen and (max-width: 600px) {
+
+    .grid{
+        padding-top: 30px;
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+    #text-footer{
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+
+}
+
 #pagination {
     display: flex;
     flex-direction: row-reverse;
